@@ -21,7 +21,7 @@
 #nhTouchControls .nh-top-actions{position:absolute;right:max(14px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top));display:flex;gap:8px;pointer-events:auto}
 #nhTouchControls .nh-small-btn{min-width:48px;height:38px;border-radius:18px;font-size:11px}
 #nhTouchControls .nh-hint{position:absolute;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);padding:5px 9px;border-radius:12px;background:rgba(0,0,0,.35);color:rgba(255,255,255,.7);font:11px system-ui,sans-serif;white-space:nowrap;pointer-events:none}
-@media (pointer:fine) and (min-width:801px){#nhTouchControls{display:none!important}}
+
 @media (orientation:portrait) and (max-width:800px){
  #nhTouchControls .nh-look-zone{left:36%;top:10%;bottom:25%}
  #nhTouchControls .nh-stick-zone{width:116px;height:116px}
@@ -35,7 +35,158 @@
 /* NEON HARBOR MOBILE TOUCH CONTROLS END */
 </style>
 
+
+<style id="neon-harbor-mobile-layout-fix">
+/* Mobile landscape layout: keep the existing desktop layout on large screens. */
+html,body{width:100%;height:100%;min-width:0;overscroll-behavior:none}
+body{touch-action:pan-x pan-y}
+#game{width:100vw;height:100vh;height:100dvh}
+@media (max-width:900px), (max-height:520px) {
+  .overlay{padding:0!important;align-items:stretch;justify-content:stretch}
+  .launcher{
+    width:100vw!important;max-width:none!important;
+    height:100vh!important;height:100dvh!important;max-height:none!important;
+    border-left:0!important;border-right:0!important;border-top:0!important;border-bottom:0!important;
+    border-radius:0!important;
+  }
+  .lside{width:clamp(112px,19vw,150px)!important;flex:0 0 clamp(112px,19vw,150px)!important}
+  .lbrand{padding:12px 8px 9px!important}
+  .lbrand h1{font-size:clamp(15px,2.8vw,22px)!important;letter-spacing:.08em!important;overflow-wrap:anywhere}
+  .lbrand span{font-size:8px!important;letter-spacing:.12em!important;overflow-wrap:anywhere}
+  .lnav{padding:8px 5px!important}
+  .litem{font-size:clamp(12px,2vw,15px)!important;padding:10px 7px!important;gap:5px!important;letter-spacing:.02em!important}
+  .lfoot{padding:8px!important;gap:6px!important}
+  .lfoot .field{font-size:12px!important;padding:8px 6px!important}
+  .lcredits{font-size:7px!important;letter-spacing:.04em!important;overflow-wrap:anywhere}
+  .lmain{padding:clamp(10px,2vw,16px)!important;overflow-x:hidden!important;overflow-y:auto!important}
+  .lpage{gap:8px!important}
+  .lpage h2{font-size:clamp(19px,3vw,26px)!important;line-height:1.1!important;letter-spacing:.04em!important}
+  .lpage h3{font-size:15px!important}
+  .ldesc{font-size:12px!important;line-height:1.35!important}
+  .lbox{padding:9px!important;gap:7px!important;margin-top:2px!important}
+  .lbox .field{font-size:12px!important;padding:8px!important}
+  .field.port{flex-basis:72px!important}
+  .mbtn{font-size:clamp(13px,2.2vw,17px)!important;padding:10px 11px!important;letter-spacing:.03em!important;gap:3px 6px!important}
+  .mbtn small{font-size:10px!important;line-height:1.25!important}
+  .sbtn{font-size:11px!important;padding:8px 10px!important;letter-spacing:.04em!important}
+  .chip{padding:5px 7px!important}
+  #tl{left:7px!important;top:7px!important;min-width:112px!important;max-width:36vw!important;gap:4px!important}
+  #money{font-size:clamp(16px,2.6vw,21px)!important}
+  #stars{font-size:13px!important;letter-spacing:.08em!important}
+  #job{font-size:10px!important}
+  #tr{right:7px!important;top:7px!important;gap:4px!important}
+  #mini{width:clamp(76px,14vw,108px)!important;height:clamp(76px,14vw,108px)!important}
+  #net{font-size:9px!important}
+  #speed{right:7px!important;bottom:7px!important;font-size:clamp(18px,3vw,26px)!important}
+  #speed small{font-size:8px!important}
+  #prompt{bottom:17%!important;max-width:50vw!important;font-size:12px!important;padding:5px 8px!important}
+  #banner{top:36%!important;font-size:clamp(24px,6vw,48px)!important}
+  #chat{left:50%!important;transform:translateX(-50%)!important;bottom:8px!important;width:min(42vw,300px)!important;max-width:42vw!important}
+  #chatlog{max-height:58px!important;font-size:10px!important}
+  #chatlog div{padding:2px 5px!important}
+  #chatin{font-size:11px!important;padding:5px 6px!important}
+  .tag{font-size:10px!important}
+  #nhTouchControls .nh-look-zone{left:35%!important;right:0!important;top:5%!important;bottom:17%!important}
+  #nhTouchControls .nh-stick-zone{
+    left:max(8px,env(safe-area-inset-left))!important;
+    bottom:max(8px,env(safe-area-inset-bottom))!important;
+    width:clamp(82px,16vw,112px)!important;height:clamp(82px,16vw,112px)!important;
+  }
+  #nhTouchControls .nh-stick-knob{width:42%!important;height:42%!important}
+  #nhTouchControls .nh-actions{
+    right:max(8px,env(safe-area-inset-right))!important;
+    bottom:max(8px,env(safe-area-inset-bottom))!important;
+    grid-template-columns:repeat(2,clamp(42px,7vw,54px))!important;
+    grid-template-rows:repeat(2,clamp(42px,7vw,54px))!important;gap:5px!important;
+  }
+  #nhTouchControls .nh-btn{font-size:9px!important;text-shadow:0 1px 3px #000}
+  #nhTouchControls .nh-top-actions{right:max(8px,env(safe-area-inset-right))!important;top:max(8px,env(safe-area-inset-top))!important;gap:4px!important}
+  #nhTouchControls .nh-small-btn{min-width:38px!important;height:28px!important;font-size:9px!important}
+  #nhTouchControls .nh-hint{display:none!important}
+  .mapcard{width:100vw!important;height:100dvh!important;max-height:none!important}
+}
+@media (max-width:900px) and (orientation:portrait){
+  /* If opened in a browser that cannot lock orientation, keep controls usable until landscape is enabled. */
+  #nhTouchControls .nh-look-zone{left:38%!important;top:12%!important;bottom:25%!important}
+  #nhTouchControls .nh-stick-zone{width:104px!important;height:104px!important}
+}
+</style>
+
+
+<style id="nh-direct-mobile-ui-fix">
+/* Direct mobile webpage fix: this block intentionally comes AFTER all original styles. */
+:root{color-scheme:dark;--nh-safe-top:env(safe-area-inset-top,0px);--nh-safe-bottom:env(safe-area-inset-bottom,0px)}
+html,body{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;min-width:0!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#070b14!important;overscroll-behavior:none!important}
+body{touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;}
+#game{position:fixed!important;inset:0!important;display:block!important;width:100vw!important;height:100vh!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important}
+.overlay{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;box-sizing:border-box!important;margin:0!important;overflow:auto!important}
+.launcher{box-sizing:border-box!important;max-width:100vw!important;max-height:100dvh!important;margin:0!important}
+#nhFullscreenBtn{position:fixed;z-index:100100;top:max(8px,var(--nh-safe-top));left:50%;transform:translateX(-50%);display:none;align-items:center;justify-content:center;min-height:34px;padding:6px 12px;border:1px solid rgba(255,255,255,.38);border-radius:18px;background:rgba(8,15,27,.78);color:#fff;font:600 11px/1 system-ui,sans-serif;letter-spacing:.04em;backdrop-filter:blur(8px);touch-action:manipulation}
+#nhFullscreenBtn.nh-show{display:flex}
+#nhTouchControls{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;overflow:hidden!important}
+#nhTouchControls .nh-look-zone{left:34%!important;right:0!important;top:8%!important;bottom:20%!important}
+#nhTouchControls .nh-stick-zone{left:max(10px,var(--nh-safe-left,env(safe-area-inset-left)))!important;bottom:max(12px,var(--nh-safe-bottom))!important;width:clamp(88px,15vw,124px)!important;height:clamp(88px,15vw,124px)!important}
+#nhTouchControls .nh-actions{right:max(10px,env(safe-area-inset-right))!important;bottom:max(12px,var(--nh-safe-bottom))!important;grid-template-columns:repeat(2,clamp(44px,7vw,58px))!important;grid-template-rows:repeat(2,clamp(44px,7vw,58px))!important;gap:6px!important}
+#nhTouchControls .nh-btn{font-size:clamp(9px,1.4vw,12px)!important;line-height:1.05!important}
+#nhTouchControls .nh-top-actions{top:max(8px,var(--nh-safe-top))!important;right:max(8px,env(safe-area-inset-right))!important;gap:5px!important}
+#nhTouchControls .nh-small-btn{min-width:40px!important;height:30px!important;font-size:9px!important}
+#tl{left:max(8px,env(safe-area-inset-left))!important;top:max(8px,var(--nh-safe-top))!important;min-width:0!important;width:clamp(120px,24vw,210px)!important;max-width:32vw!important;gap:4px!important}
+#tl .chip{padding:5px 7px!important}
+#money{font-size:clamp(16px,2.4vw,24px)!important}
+#stars{font-size:clamp(10px,1.6vw,16px)!important;letter-spacing:.08em!important}
+#job{font-size:clamp(10px,1.5vw,13px)!important}
+#tr{right:max(8px,env(safe-area-inset-right))!important;top:max(8px,var(--nh-safe-top))!important;gap:4px!important}
+#mini{width:clamp(76px,13vw,128px)!important;height:clamp(76px,13vw,128px)!important}
+#net{font-size:9px!important}
+#speed{right:max(8px,env(safe-area-inset-right))!important;bottom:max(8px,var(--nh-safe-bottom))!important;font-size:clamp(18px,3vw,28px)!important}
+#prompt{bottom:calc(max(12px,var(--nh-safe-bottom)) + 64px)!important;left:50%!important;transform:translateX(-50%)!important;max-width:42vw!important;font-size:clamp(10px,1.5vw,13px)!important;padding:5px 8px!important}
+#banner{top:36%!important;font-size:clamp(24px,5vw,46px)!important}
+#wp{bottom:calc(max(8px,var(--nh-safe-bottom)) + 4px)!important;max-width:42vw!important;padding:6px 9px!important;gap:6px!important}
+#wp .wname{font-size:clamp(11px,1.5vw,14px)!important}
+#wp .wammo{font-size:clamp(15px,2vw,21px)!important}
+#chat{left:50%!important;transform:translateX(-50%)!important;bottom:max(8px,var(--nh-safe-bottom))!important;width:min(40vw,300px)!important;max-width:40vw!important}
+#chatlog{max-height:44px!important;font-size:9px!important}
+.mapcard{width:100vw!important;height:100vh!important;height:100dvh!important;max-height:none!important}
+@media (max-width:900px){
+ .overlay{padding:0!important;align-items:stretch!important;justify-content:stretch!important}
+ .launcher{width:100vw!important;height:100vh!important;height:100dvh!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+ .lside{width:clamp(108px,18vw,142px)!important;flex:0 0 clamp(108px,18vw,142px)!important;min-width:0!important}
+ .lbrand{padding:12px 7px 8px!important;overflow:hidden!important}
+ .lbrand h1{font-size:clamp(17px,3vw,25px)!important;line-height:1!important;letter-spacing:.08em!important;white-space:normal!important;overflow-wrap:anywhere!important}
+ .lbrand span{font-size:clamp(7px,1vw,9px)!important;letter-spacing:.08em!important;line-height:1.2!important;overflow-wrap:anywhere!important}
+ .lnav{padding:8px 5px!important;gap:4px!important}
+ .litem{font-size:clamp(11px,1.7vw,14px)!important;line-height:1.15!important;padding:10px 6px!important;gap:5px!important;letter-spacing:0!important}
+ .lfoot{padding:7px!important;gap:5px!important;overflow:hidden!important}
+ .lfoot .field{font-size:11px!important;padding:7px 5px!important;min-width:0!important}
+ .lcredits{font-size:7px!important;letter-spacing:0!important;overflow-wrap:anywhere!important}
+ .lmain{min-width:0!important;flex:1 1 auto!important;padding:clamp(10px,2vw,18px)!important;overflow-x:hidden!important;overflow-y:auto!important}
+ .lpage{gap:8px!important}
+ .lpage h2{font-size:clamp(19px,3.1vw,27px)!important;line-height:1.1!important;letter-spacing:.03em!important}
+ .lpage h3{font-size:clamp(13px,2vw,16px)!important;line-height:1.15!important}
+ .ldesc{font-size:clamp(11px,1.7vw,13px)!important;line-height:1.35!important}
+ .lbox{padding:clamp(8px,1.4vw,12px)!important;gap:6px!important;margin-top:2px!important}
+ .lbox .field{font-size:clamp(11px,1.7vw,13px)!important;padding:8px!important;min-width:0!important}
+ .field.port{flex-basis:64px!important}
+ .mbtn{font-size:clamp(12px,1.8vw,16px)!important;padding:10px!important;letter-spacing:0!important;gap:4px!important}
+ .mbtn small{font-size:10px!important;line-height:1.25!important}
+ .sbtn{font-size:10px!important;padding:8px!important;letter-spacing:0!important}
+}
+@media (max-width:900px) and (orientation:portrait){
+ #nhFullscreenBtn.nh-show{display:flex}
+ #nhTouchControls .nh-hint{display:block!important;bottom:calc(max(12px,var(--nh-safe-bottom)) + 118px)!important;font-size:10px!important}
+}
+@media (orientation:landscape) and (max-height:520px){
+ .launcher{height:100dvh!important}
+ #nhTouchControls .nh-stick-zone{width:clamp(76px,15vh,104px)!important;height:clamp(76px,15vh,104px)!important}
+ #nhTouchControls .nh-actions{grid-template-columns:repeat(2,clamp(40px,9vh,50px))!important;grid-template-rows:repeat(2,clamp(40px,9vh,50px))!important;gap:4px!important}
+ #nhTouchControls .nh-small-btn{height:26px!important;min-width:36px!important}
+ #tl{width:clamp(115px,22vw,170px)!important}
+ #mini{width:clamp(68px,13vh,92px)!important;height:clamp(68px,13vh,92px)!important}
+}
+</style>
+
 </head><body>
+<button id="nhFullscreenBtn" type="button" aria-label="切换全屏">全屏 / 横屏</button>
 <div id="intro">
   <div class="introbox">
     <div class="introteam">XSTUDIO</div>
@@ -4649,7 +4800,12 @@ setInterval(()=>{if(started)sendPresence()},5000);
   const look=touchRoot.querySelector('.nh-look-zone');
   const touchKeys=new Set();
   let stickPointer=null,lookPointer=null,lookX=0,lookY=0,stickX=0,stickY=0;
-  const coarse=()=>window.matchMedia('(pointer:coarse)').matches || window.innerWidth<=800;
+  const coarse=()=>(
+    window.matchMedia('(pointer:coarse)').matches ||
+    (navigator.maxTouchPoints||0)>0 ||
+    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+    window.innerWidth<=900
+  );
   function setKey(k,on){
     if(on){keys[k]=true;touchKeys.add(k)}
     else{keys[k]=false;touchKeys.delete(k)}
@@ -4753,6 +4909,41 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     });
   });
 }
+</script>
+
+
+<script id="nh-mobile-fullscreen-behavior">
+(function(){
+  const btn=document.getElementById('nhFullscreenBtn');
+  const isMobile=()=>matchMedia('(max-width: 900px), (pointer: coarse)').matches;
+  async function enterImmersive(){
+    try{
+      if(screen.orientation && screen.orientation.lock){await screen.orientation.lock('landscape').catch(()=>{});}
+    }catch(e){}
+    try{
+      const target=document.documentElement;
+      if(!document.fullscreenElement && target.requestFullscreen){await target.requestFullscreen({navigationUI:'hide'}).catch(()=>{});}
+    }catch(e){}
+    try{if(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()){document.body.classList.add('nh-native-app');}}catch(e){}
+    update();
+  }
+  function update(){
+    if(!btn)return;
+    const running=document.getElementById('nhTouchControls');
+    const playing=running && !running.hidden;
+    btn.classList.toggle('nh-show',!!(isMobile() && (playing || window.innerHeight>window.innerWidth)));
+  }
+  btn && btn.addEventListener('click',enterImmersive,{passive:true});
+  document.addEventListener('fullscreenchange',update);
+  window.addEventListener('resize',update);
+  window.addEventListener('orientationchange',()=>setTimeout(update,250));
+  // Try locking orientation on a direct user gesture when the game starts.
+  document.addEventListener('click',function(e){
+    const t=e.target;
+    if(t && (t.closest('#startSingle') || t.closest('#startGame') || t.closest('[data-mode="single"]'))){enterImmersive();}
+  },true);
+  setTimeout(update,500);
+})();
 </script>
 
 </body></html>

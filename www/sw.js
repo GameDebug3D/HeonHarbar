@@ -1,4 +1,4 @@
-const CACHE_NAME = 'neon-harbor-v1';
+const CACHE_NAME = 'neon-harbor-v4-mobile-ui';
 const ASSETS = [
   './',
   './index.html',

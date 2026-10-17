@@ -87,3 +87,13 @@ NeonHarbor_MobileApp/
 - 已将触控控件 CSS 正确包在 `<style>` 标签中，避免样式被浏览器当作正文显示。
 - GitHub Actions 会在生成 Android 工程后自动修改启动 Activity 的 `screenOrientation` 为 `landscape`，让 Android App 启动时使用横屏。
 - 横屏设置适用于本项目构建出来的 Android APK；手机浏览器打开网页时，是否允许自动锁定横屏取决于浏览器和系统权限。
+
+
+## 重要：手机界面与全屏修复版
+此版本进一步调整了手机横屏界面：移动端菜单改为全屏布局、缩小 HUD/小地图、缩小虚拟摇杆和动作按钮，并增强触屏设备识别。Android 工作流还会修改原生 MainActivity，设置横屏并启用沉浸式全屏（隐藏状态栏/导航栏）。
+
+请将本 ZIP 的 `www/index.html` 和 `.github/workflows/build-android.yml` 更新到 GitHub 仓库，再重新运行 Actions 生成新的 APK。旧 APK 不会自动更新。浏览器网页/PWA 无法强制隐藏系统状态栏；沉浸式全屏设置只作用于重新编译后的 Android 原生 APK。真机仍需测试。
+
+
+## 网页直接适配修复（v4）
+本版本直接修改 `www/index.html`：追加最终优先级的手机 UI CSS、缩放主菜单/HUD/触控按钮、添加网页全屏/横屏尝试按钮，并更新缓存版本。浏览器是否允许全屏/横屏锁定取决于平台；Capacitor 原生沉浸式状态栏仍需 Android 原生配置配合。
