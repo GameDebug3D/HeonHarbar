@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.xstudio.neonharbor',
+  appId: 'com.neonharbor.game',
   appName: 'Neon Harbor',
   webDir: 'www',
   bundledWebRuntime: false,

@@ -1,42 +1,83 @@
-# Neon Harbor 手机应用封装包
+# Neon Harbor 手机应用项目
 
-这个包保留了你上传的 Neon Harbor 网页游戏，并添加了 PWA 配置与 Capacitor 封装配置。
+## 当前应用配置
+- 桌面显示名称：`Neon Harbor`
+- Android 应用包名：`com.neonharbor.game`
+- 构建类型：Android Debug APK（用于安装测试）
+- 网页入口：`www/index.html`
+- 封装框架：Capacitor 6
+- Java：17；Node.js：20
 
-## 包含内容
-- `www/`：网页游戏文件（index.html、Three.js、Socket.IO 客户端）以及 PWA manifest / service worker / 图标。
-- `package.json`、`capacitor.config.ts`：用于封装 Android / iOS 的项目配置。
-- `.github/workflows/build-android.yml`：上传到 GitHub 后，可通过 Actions 云端构建 Android Debug APK。
-- `desktop-original/`：原来的 Python 桌面启动器与日志，仅作备份；手机应用不需要运行 Python 启动器。
+主要配置文件：
+- `capacitor.config.ts`：应用名称、包名和 Web 资源目录。
+- `package.json`：Capacitor 依赖和常用命令。
+- `.github/workflows/build-android.yml`：GitHub Actions 自动构建流程。
+- `.gitignore`：忽略生成的 Android/iOS 工程和依赖目录。
 
-## 最简单的零成本路线
-1. 把 `www` 文件夹部署到 GitHub Pages 或 Cloudflare Pages。
-2. iPhone：用 Safari 打开部署网址 → 分享 → 添加到主屏幕。无需 Apple Developer 付费会员，也不需要签名。这是网页应用，不是 App Store 原生应用。
-3. Android：可以同样使用网页版本；若需要独立 APK，使用下面的 Capacitor / GitHub Actions 流程。
+## 通过 GitHub 自动编译 APK（推荐）
 
-## Android APK（云端构建）
-1. 把这个文件夹里的所有内容上传到一个新的 GitHub 仓库根目录（包括隐藏的 `.github` 文件夹）。
-2. 打开仓库的 Actions 标签页，启用 Actions。
-3. 选择 `Build Neon Harbor Android APK`，点击 `Run workflow`。
-4. 成功后打开该次运行记录，在 Artifacts 区域下载 `NeonHarbor-Android-debug`。
-5. 解压后得到 `app-debug.apk`，可以安装到 Android 手机上。Debug APK 适合测试，不是商店发布版本。
+1. 下载并解压本项目 ZIP。
+2. 在 GitHub 新建一个仓库，例如 `NeonHarbor-Mobile`。
+3. 将解压后的**所有文件和文件夹**上传到仓库根目录。确认 `.github/workflows/build-android.yml` 也已上传；`.github` 是隐藏目录，不能漏掉。
+4. 打开 GitHub 仓库的 **Actions** 页面。如果出现提示，点击启用 Actions。
+5. 在左侧选择 **Build Neon Harbor Android Debug APK**。
+6. 点击 **Run workflow**，选择 `main` 或 `master` 分支，再点击绿色的 **Run workflow**。
+7. 打开最新一次运行记录，等待所有步骤显示绿色勾号。
+8. 在运行记录页面底部的 **Artifacts** 区域，下载 `NeonHarbor-Android-debug`。
+9. 解压下载的 Artifact，得到 `app-debug.apk`，将 APK 传到安卓手机后打开安装。手机可能需要允许该来源安装应用。
 
-## iOS 原生 App 的限制
-- `npx cap add ios` 需要在 macOS 上运行并使用 Xcode 生成/编译 iOS 工程。
-- 没有付费 Apple Developer Program 会员仍可使用 Xcode 的个人免费签名进行有限的个人测试，但通常需要 Mac、Apple ID，并且安装有效期/设备数量等有约束。
-- 不存在一种通用、官方、完全不签名且可直接安装到所有 iPhone 的原生 IPA 方案。
-- 如果没有 Mac、没有付费签名，建议先用 Safari 添加到主屏幕的 PWA 方案。
+也可以把更新推送到 `main` 或 `master` 分支，工作流会自动运行。
 
-## 游戏功能说明
-- 网页代码中有单人模式，因此单人模式不需要联机服务器。
-- 多人联机需要有可从手机访问的 Socket.IO 游戏服务器和正确配置的 IP/端口。仅把客户端封装成 APK 不会自动创建联机服务器。
-- 该游戏使用 WebGL/Three.js；实际手机性能、触控操作和 WebGL 支持需要在真机测试。
-- PWA 离线缓存只缓存主要本地游戏文件；外部字体和联机功能仍需要网络。
+## 本地构建（可选）
+需要安装 Node.js 20、Java JDK 17 和 Android SDK。然后在项目根目录运行：
+
+```bash
+npm install
+npx cap add android
+npx cap sync android
+cd android
+./gradlew assembleDebug
+```
+
+Windows PowerShell 最后一步使用：
+
+```powershell
+.\gradlew.bat assembleDebug
+```
+
+生成的 APK 通常位于 `android/app/build/outputs/apk/debug/app-debug.apk`。
+
+## 重要说明
+- 本 ZIP 已准备好配置和自动编译工作流，但当前环境没有实际运行 GitHub Actions，因此**尚未产出经过真机安装验证的 APK**。首次编译需在 GitHub Actions 或已配置 Android SDK 的电脑上执行。
+- Debug APK 用于测试，不是 Google Play 商店发布包；它不需要你预先提供正式发布签名密钥。
+- `com.neonharbor.game` 是 Android 应用唯一标识，若未来发布到商店，建议保持不变。
+- 手机触控已加入网页层：左下虚拟摇杆、右侧视角拖动和动作按钮。请在真机上验证控制映射、画面比例和性能。
+- 游戏单人模式不需要联机服务器；多人模式仍需要手机可访问的 Socket.IO 服务端。
+- iPhone 原生 App 需要 macOS/Xcode 进行构建和签名。没有 Mac 时可先通过 Safari 将网页添加到主屏幕，作为 PWA 使用。
+
+## 目录结构
+
+```text
+NeonHarbor_MobileApp/
+├── .github/workflows/build-android.yml
+├── .gitignore
+├── capacitor.config.ts
+├── package.json
+├── README_CN.md
+├── www/
+│   ├── index.html
+│   ├── manifest.webmanifest
+│   ├── sw.js
+│   ├── three.min.js
+│   ├── socket.io.min.js
+│   └── icons/
+└── desktop-original/   # 原 Python 启动器和日志备份
+```
 
 
-## 手机触控（已添加）
-- 左下虚拟摇杆：W/A/S/D 移动（开车时对应油门、倒车和转向）。
-- 右侧透明区域：滑动旋转视角。
-- ATTACK：攻击/射击；USE：交互；CAR：进入/离开车辆或触发原游戏对应动作。
-- JUMP：按住空格键对应动作（开车时可作为手刹）；RUN：按住 Shift；RELOAD：换弹；PAUSE：暂停。
-- 控件只在触屏/窄屏设备且游戏开始后显示，桌面鼠标设备默认隐藏。
-- 真机测试仍然必要，个别动作的体验可能需要按实际玩法微调。
+### GitHub Actions 锁文件报错修复
+如果 `actions/setup-node@v4` 报错找不到 `package-lock.json`，请确保工作流的 `Set up Node.js` 步骤只配置 `node-version: 20`，不要配置 `cache: npm`。项目未提交 npm 锁文件时，移除缓存选项即可。
+
+
+### 构建依赖修复
+项目已将 TypeScript 加入 devDependencies，工作流也会在生成 Android 工程前确保 TypeScript 已安装，以支持 capacitor.config.ts。
