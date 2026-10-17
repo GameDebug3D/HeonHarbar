@@ -81,3 +81,9 @@ NeonHarbor_MobileApp/
 
 ### 构建依赖修复
 项目已将 TypeScript 加入 devDependencies，工作流也会在生成 Android 工程前确保 TypeScript 已安装，以支持 capacitor.config.ts。
+
+
+### 手机画面显示修复（Fixed3）
+- 已将触控控件 CSS 正确包在 `<style>` 标签中，避免样式被浏览器当作正文显示。
+- GitHub Actions 会在生成 Android 工程后自动修改启动 Activity 的 `screenOrientation` 为 `landscape`，让 Android App 启动时使用横屏。
+- 横屏设置适用于本项目构建出来的 Android APK；手机浏览器打开网页时，是否允许自动锁定横屏取决于浏览器和系统权限。
