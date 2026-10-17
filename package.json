@@ -1,0 +1,20 @@
+{
+  "name": "neon-harbor-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Capacitor wrapper for the Neon Harbor web game",
+  "scripts": {
+    "web": "npx serve www",
+    "cap:sync": "npx cap sync",
+    "android:add": "npx cap add android",
+    "ios:add": "npx cap add ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  }
+}

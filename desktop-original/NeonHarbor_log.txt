@@ -1,0 +1,9 @@
+[2026-10-17 12:20:44] client start, base=G:\AImake\Web(2)\GTA\WebGTA\app
+[2026-10-17 12:20:44] webview package ok
+[2026-10-17 12:20:44] pywebview ?, backend=edgechromium, opening http://127.0.0.1:5173/
+[2026-10-17 12:21:01] client start, base=G:\AImake\Web(2)\GTA\WebGTA\app
+[2026-10-17 12:21:01] webview package ok
+[2026-10-17 12:21:01] pywebview ?, backend=edgechromium, opening http://127.0.0.1:5173/
+[2026-10-17 12:21:34] client start, base=G:\AImake\Web(2)\GTA\WebGTA\app
+[2026-10-17 12:21:34] webview package ok
+[2026-10-17 12:21:34] pywebview ?, backend=edgechromium, opening http://127.0.0.1:5173/
